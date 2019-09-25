@@ -572,6 +572,24 @@ impl Capture<Inactive> {
         unsafe { raw::pcap_set_snaplen(*self.handle, to) };
         self
     }
+
+    /// Set the state of immediate mode.
+    ///
+    /// When immediate mode is disabled, buffering is used to reduce the rate at
+    /// which captured packets are passed to the application during heavy load.
+    /// When enabled, any available packets are returned as soon as they become
+    /// available.
+    ///
+    /// Immediate mode is *disabled* by default to make capturing on busy
+    /// interfaces more efficient.
+    ///
+    /// Note: On some platforms, when immediate mode is disabled the timeout
+    /// functionality may not work as expected; at least one packet must arrive
+    /// before the timeout is considered.
+    pub fn set_immediate_mode(self, to: bool) -> Capture<Inactive> {
+        unsafe { raw::pcap_set_immediate_mode(*self.handle, to as _) };
+        self
+    }
 }
 
 ///# Activated captures include `Capture<Active>` and `Capture<Offline>`.
