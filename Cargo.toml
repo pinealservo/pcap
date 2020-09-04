@@ -10,6 +10,7 @@ homepage = "https://github.com/ebfull/pcap"
 repository = "https://github.com/ebfull/pcap"
 documentation = "https://docs.rs/pcap"
 license = "MIT OR Apache-2.0"
+links = "pcap"
 build = "build.rs"
 
 [dependencies]
